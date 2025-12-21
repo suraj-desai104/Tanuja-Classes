@@ -106,6 +106,7 @@ public class StudentAuthController {
          String token = jwtUtil.generateToken(admin.getUsername(), "ADMIN");
 
          Map<String, Object> response = Map.of(
+        		 "id", admin.getId(),
                  "token", token,
                  "role", "ADMIN"
              );
