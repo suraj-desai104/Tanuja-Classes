@@ -123,7 +123,7 @@ public class AdminAuthController {
         Student existingUser  =studentRepository.findByUsername(username);
         // Generate random password
         String password = RandomStringUtils.randomAlphanumeric(8);
-if(existingUser!=null) {
+if(existingUser==null) {
         Student student = new Student();
         student.setUsername(username);
         student.setPassword(passwordEncoder.encode(password));
