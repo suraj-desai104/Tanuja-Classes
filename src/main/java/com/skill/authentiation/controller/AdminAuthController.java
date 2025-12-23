@@ -119,10 +119,11 @@ public class AdminAuthController {
 
         // Username format
         String username = firstName + "." + lastName + "@" + lastThreeDigits;
-
+            
+        Student existingUser  =studentRepository.findByUsername(username);
         // Generate random password
         String password = RandomStringUtils.randomAlphanumeric(8);
-
+if(existingUser!=null) {
         Student student = new Student();
         student.setUsername(username);
         student.setPassword(passwordEncoder.encode(password));
@@ -138,6 +139,9 @@ public class AdminAuthController {
                 "username", username,
                 "password", password
         ));
+}else {
+	return ResponseEntity.ok("User Alrady register by this name and also phone try another phone number");
+}
     }
 
 }
